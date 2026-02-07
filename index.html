@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lily Qing Li</title>
+    <meta name="description"
+        content="Lily Qing Li — probabilistic AI, scalable inference, decentralised optimisation, and Bayesian multi-object tracking." />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        header {
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #333;
+        }
+
+        main {
+            padding: 40px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .intro {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 50px;
+        }
+
+        .profile-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .profile-image {
+            width: 170px;
+            height: 220px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .link-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .link-row a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .link-row a:hover {
+            text-decoration: underline;
+        }
+
+        .bio {
+            flex: 1;
+        }
+
+        .bio .title {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .bio .affiliation {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .bio p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .research-interests .lead {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .research-interests ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .research-interests li {
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .research-interests li::before {
+            content: "•";
+            color: #0066cc;
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .research-interests li strong {
+            color: #333;
+        }
+
+        .news-item {
+            margin-bottom: 18px;
+            border-left: 3px solid #f0f0f0;
+            padding-left: 16px;
+        }
+
+        .news-date {
+            font-size: 14px;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .news-content {
+            font-size: 16px;
+            margin-top: 4px;
+        }
+
+        .news-content a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .news-content a:hover {
+            text-decoration: underline;
+        }
+
+        .talk-item {
+            margin-bottom: 18px;
+            padding: 18px;
+            background: #fafafa;
+            border-radius: 6px;
+        }
+
+        .talk-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .talk-venue {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .talk-date {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .publication-item {
+            margin-bottom: 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pub-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .pub-authors {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .pub-venue {
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+        }
+
+        .pub-links {
+            margin-top: 8px;
+        }
+
+        .pub-links a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 14px;
+            font-size: 14px;
+        }
+
+        .pub-links a:hover {
+            text-decoration: underline;
+        }
+
+        .project-item {
+            margin-bottom: 22px;
+            padding: 18px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .project-links a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 14px;
+            font-size: 14px;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        footer {
+            border-top: 1px solid #eee;
+            padding: 26px 0;
+            text-align: center;
+            /* CSS requires 'center' not 'centre' */
+            color: #888;
+            font-size: 14px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .intro {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav aria-label="Primary">
+                <div class="nav-container">
+                    <a href="#home" class="logo nav-link">Lily Qing Li</a>
+                    <ul class="nav-links">
+                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="#research" class="nav-link">Research &amp; Demos</a></li>
+                        <li><a href="#publications" class="nav-link">Publications &amp; Codes</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- HOME -->
+        <section id="home" class="page-section active" aria-label="Home">
+            <div class="intro">
+                <div class="profile-column">
+                    <div class="profile-image">
+                        <img src="lq.jpg" alt="Portrait of Lily Qing Li" />
+                    </div>
+
+                    <div class="link-row">
+                        <a href="https://scholar.google.com/citations?user=cEuk3_MAAAAJ&hl=en" target="_blank"
+                            rel="noopener noreferrer">Google Scholar</a>
+                    </div>
+                    <div class="email-link">
+                        <a href="mailto:qli10@ed.ac.uk">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="vertical-align: middle; margin-right: 6px;">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bio">
+                    <div class="title">Postdoctoral Research Associate</div>
+                    <div class="affiliation">College of Mathematics, University of Edinburgh</div>
+
+                    <p>
+                        I am currently a Postdoctoral Research Associate in the
+                        <a href="https://www.probai.uk/" target="_blank" rel="noopener noreferrer">ProbAI Hub</a>.
+                        My research develops scalable probabilistic inference for high-dimensional problems.
+                    </p>
+
+                    <p>
+                        Previously, I completed my PhD in Information Engineering at the University of Cambridge,
+                        working on Bayesian
+                        multi-object tracking, sensor fusion, and decentralised inference.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Research Interests -->
+            <div class="section research-interests">
+                <h2>Research Interests</h2>
+
+                <p class="lead">
+                    I work across probabilistic AI, statistics, and signal processing. My research focuses on developing
+                    scalable,
+                    uncertainty-aware inference methods, with applications to complex sequential and multi-agent
+                    systems.
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Predictive and post-Bayes inference:</strong>
+                        martingale posteriors, predictive resampling, and generalised Bayes methods for robust
+                        uncertainty
+                        quantification under model misspecification.
+                    </li>
+
+                    <li>
+                        <strong>Nonparametric Bayesian methods:</strong>
+                        Bayesian clustering and analysis for high-dimensional data, including biomedical applications
+                        such as RNA
+                        sequencing.
+                    </li>
+
+                    <li>
+                        <strong>Scalable and distributed inference:</strong>
+                        variational inference, sequential Monte Carlo, and MCMC for
+                        high-dimensional latent-variable models.
+                    </li>
+
+                    <li>
+                        <strong>Sensor fusion and multi-object tracking:</strong>
+                        decentralised optimisation and data fusion of heterogeneous sensors; robust tracking under
+                        clutter and occlusion; group
+                        interaction
+                        modelling and intent inference in multi-agent systems.
+                    </li>
+                </ul>
+
+                <p class="lead">
+                    I actively seek interdisciplinary collaborations, particularly in applications such as animal
+                    interaction and
+                    behaviour learning, pollution tracking, and marine monitoring.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>News</h2>
+
+                <div class="news-item">
+                    <div class="news-date">Oct 2025</div>
+                    <div class="news-content"> Our paper on "Decentralised Variational Inference Frameworks for
+                        Multi-object Tracking on Sensor Networks" is online now on <a
+                            href="https://ieeexplore.ieee.org/abstract/document/11063220">IEEE TSP</a></div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">July 2025</div>
+                    <div class="news-content">Our work on a fast detection and tracking algorithm PiVoT was presented on
+                        FUSION 2025 in Rio</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">Jun 2025</div>
+                    <div class="news-content">We are hosting a special session on 'Advances in Sensor Fusion and
+                        Distributed Learning' at IEEE 23rd Statistical Signal Processing Workshop (SSP 2025), Edinburgh
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">July 2022</div>
+                    <div class="news-content">Our paper 'A variational Bayes association-based multi-object tracker
+                        under the nonhomogeneous Poisson measurement process' was awarded <strong>Best student Paper
+                            Award</strong> at the 25th International Conference on Information Fusion</div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2>Recent Talks</h2>
+                <div class="talk-item">
+                    <div class="talk-title">Distributed Learning and Sensor Fusion: A Case Study in Multi-Object
+                        Tracking</div>
+                    <div class="talk-venue">ProbAI Hub Seminar</div>
+                    <div class="talk-date">14 Mar 2025</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESEARCH & DEMOS -->
+        <section id="research" class="page-section" aria-label="Research and Demos">
+            <h2>Selected Research &amp; Demos</h2>
+
+            <div class="publication-item">
+                <div class="pub-title">PiVoT: Poisson measurements-based variational multi-object detection and tracking
+                </div>
+                <div class="pub-authors">R. Gan, Q. Li, S. Godsill</div>
+                <div class="pub-venue">2025 28th International Conference on Information Fusion (FUSION)</div>
+                <p class="project-description">
+                </p>
+                <div class="pub-links">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/11123968">Paper</a>
+                    <a href="https://runzegan.github.io/projects/pivot/">Demo</a>
+                </div>
+            </div>
+
+
+        </section>
+
+        <!-- PUBLICATIONS -->
+        <section id="publications" class="page-section" aria-label="Publications">
+            <h2>
+                Publications
+                <span style="font-weight: normal; font-size: 16px;">
+                    (full list on
+                    <a href="https://scholar.google.com/citations?user=cEuk3_MAAAAJ&hl=en" target="_blank"
+                        rel="noopener noreferrer">
+                        Google Scholar
+                    </a>)
+                </span>
+            </h2>
+
+            <!-- PhD Thesis Highlight -->
+            <div class="publication-item">
+                <div class="pub-title">
+                    Modern Bayesian Object Tracking: Challenges and Solutions (PhD Thesis)
+                </div>
+                <div class="pub-authors"><strong>Q. Li</strong></div>
+                <div class="pub-venue">
+                    University of Cambridge, Department of Engineering
+                </div>
+
+                <p class="project-description">
+                    My PhD thesis studied Bayesian state-space models and efficient sequential inference methods
+                    for high-dimensional sequential tracking data. The work demonstrated
+                    how Monte Carlo sampling techniques can be made computationally practical
+                    for various large-scale tracking tasks.
+                </p>
+
+                <div class="pub-links">
+                    <a href="https://www.repository.cam.ac.uk/items/b755292f-89f8-4d0e-aa29-a691eb0c5554">Thesis
+                        (PDF)</a>
+                </div>
+            </div>
+
+            <!-- Journal / Conference Papers -->
+            <div class="publication-item">
+                <div class="pub-title">
+                    Decentralised Variational Inference Frameworks for Bayesian Multi-object Tracking on
+                    Time-varying Sensor Networks
+                </div>
+
+                <div class="pub-authors"><strong>Q. Li</strong>, R. Gan, S. Godsill</div>
+                <div class="pub-venue">IEEE Transactions on Signal Processing, 2025</div>
+
+                <div class="pub-links">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/11063220" target="_blank"
+                        rel="noopener noreferrer">Paper</a>
+
+                    <a href="https://scholar.googleusercontent.com/scholar.bib?q=info:7UBPOcqNVRAJ:scholar.google.com/&output=citation&scisdr=Cn1WRNVgEOeEyUFnoU0:AHkA5jQAAAAAaYdhuU0CXffKi8qd26CtW6T9CEA&scisig=AHkA5jQAAAAAaYdhuT8sVAOfnk3DpJFmCpzs0pM&scisf=4&ct=citation&cd=-1&hl=en"
+                        target="_blank" rel="noopener noreferrer">BibTeX</a>
+                </div>
+            </div>
+
+
+            <div class="publication-item">
+                <div class="pub-title">Variational Tracking and Redetection for Closely-spaced Objects in Heavy Clutter
+                </div>
+                <div class="pub-authors">R. Gan, <strong>Q. Li</strong>, S. Godsill</div>
+                <div class="pub-venue">IEEE Transactions on Aerospace and Electronic Systems, 2024</div>
+                <div class="pub-links">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10521593" target="_blank"
+                        rel="noopener noreferrer">Paper</a>
+
+                    <a href="https://scholar.googleusercontent.com/scholar.bib?q=info:s0r7-Dy-msgJ:scholar.google.com/&output=citation&scisdr=Cn1WRNVgEOeEyUFnU9o:AHkA5jQAAAAAaYdhS9qi09vAc9GPk-Rjyy1t3Bo&scisig=AHkA5jQAAAAAaYdhS9UbwvN-W-Y0rlczGW6XwVs&scisf=4&ct=citation&cd=-1&hl=en&scfhb=1"
+                        target="_blank" rel="noopener noreferrer">BibTeX</a>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="pub-title">An Adaptive and Scalable Multi-object Tracker based on the Non-homogeneous
+                    Poisson Process</div>
+                <div class="pub-authors"><strong>Q. Li</strong>, R. Gan, J. Liang, S. Godsill</div>
+                <div class="pub-venue">IEEE Transactions on Signal Processing, 2023</div>
+                <div class="pub-links">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10029907" target="_blank"
+                        rel="noopener noreferrer">Paper</a>
+
+                    <a href="https://scholar.googleusercontent.com/scholar.bib?q=info:XlqKruKxJKAJ:scholar.google.com/&output=citation&scisdr=Cn1WRNVgEOeEyUFkEzI:AHkA5jQAAAAAaYdiCzJ7jMq_dD1jtJ9qgq3Z9ds&scisig=AHkA5jQAAAAAaYdiC0bgizjqKs1LkeSHpiJK7JI&scisf=4&ct=citation&cd=-1&hl=en&scfhb=1"
+                        target="_blank" rel="noopener noreferrer">BibTeX</a>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="pub-title">Sequential dynamic leadership inference using Bayesian Monte Carlo methods</div>
+                <div class="pub-authors"><strong>Q. Li</strong>, B. I. Ahmad, S. Godsill</div>
+                <div class="pub-venue">IEEE Transactions on Aerospace and Electronic Systems, 2021</div>
+                                <div class="pub-links">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/9336664" target="_blank"
+                        rel="noopener noreferrer">Paper</a>
+
+                    <a href="https://scholar.googleusercontent.com/scholar.bib?q=info:n0NbEU8o3mUJ:scholar.google.com/&output=citation&scisdr=Cn1WRNVgEOeEyUFkLHo:AHkA5jQAAAAAaYdiNHqTbkmOJEgwz5hZY_610M8&scisig=AHkA5jQAAAAAaYdiNFHmQpHP9x3-vTe78lp42iA&scisf=4&ct=citation&cd=-1&hl=en&scfhb=1"
+                        target="_blank" rel="noopener noreferrer">BibTeX</a>
+                </div>
+            </div>
+
+
+            <h2>Codes</h2>
+            <div class="project-item">
+                <div class="project-title">SSMProblem.jl</div>
+                <div class="project-description">
+                    Julia package for state space model programming and inference (Turing.jl).
+                </div>
+                <div class="project-links">
+                    <a href="https://arxiv.org/abs/2505.23302">Paper</a>
+                    <a href="https://github.com/TuringLang/SSMProblems.jl">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">Stone Soup extensions</div>
+                <div class="project-description">
+                    Extensions to the Stone Soup tracking library, including non-Gaussian (Lévy) motion models and
+                    associated filters for robust tracking.
+                </div>
+                <div class="project-links">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10706454">Paper</a>
+                    <a href="https://github.com/dstl/Stone-Soup">GitHub</a>
+                </div>
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+
+
+    <script>
+        // Navigation: supports deep-linking, and back/forward history
+        (function () {
+            const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+            const sections = Array.from(document.querySelectorAll('.page-section'));
+
+            function setActive(targetId) {
+                navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + targetId));
+                sections.forEach(s => s.classList.toggle('active', s.id === targetId));
+            }
+
+            function normaliseHash() {
+                const hash = window.location.hash || '#home';
+                const id = hash.replace('#', '');
+                return document.getElementById(id) ? id : 'home';
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (!href || !href.startsWith('#')) return;
+                    e.preventDefault();
+                    const targetId = href.slice(1);
+                    history.pushState(null, '', '#' + targetId);
+                    setActive(targetId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            window.addEventListener('popstate', () => setActive(normaliseHash()));
+            setActive(normaliseHash());
+        })();
+    </script>
+</body>
+
+</html>
